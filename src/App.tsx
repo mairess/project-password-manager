@@ -1,9 +1,10 @@
 import './App.css';
+import Title from './components/Title';
 
 function App() {
   return (
     <div>
-      <h1> Gerenciador de senhas</h1>
+      <Title />
       Hello World
     </div>
   );
