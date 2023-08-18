@@ -15,10 +15,13 @@ function Form({ onCancel }: FormProps) {
   const havSpecial = specialCharRegex.test(passwordInput);
   const havNum = numberReg.test(passwordInput);
   const havLett = LettReg.test(passwordInput);
+  const validPassword = 'valid-password-check';
+  const invalidPassword = 'invalid-password-check';
 
   const isFormValid = serviceNameInput.length > 0
     && loginInput.length > 0
     && passwordInput.length >= 8
+    && passwordInput.length <= 16
     && urlInput.length > 0
     && havSpecial
     && havNum
@@ -56,7 +59,7 @@ function Form({ onCancel }: FormProps) {
           name=""
           value={ passwordInput }
           id="passwprd-input"
-          maxLength={ 16 }
+          // maxLength={ 16 }
           onChange={ ({ target: { value } }) => setPasswordInput(value) }
         />
       </label>
@@ -71,6 +74,31 @@ function Form({ onCancel }: FormProps) {
           id="url-input"
         />
       </label>
+      <div>
+        <p
+          className={ passwordInput.length >= 8 ? validPassword : invalidPassword }
+        >
+          Possuir 8 ou mais caracteres
+        </p>
+        <p
+          className={
+            passwordInput.length >= 8 && passwordInput.length <= 16
+              ? validPassword : invalidPassword
+          }
+        >
+          Possuir até 16 caracteres
+        </p>
+        <p
+          className={ havNum && havLett ? validPassword : invalidPassword }
+        >
+          Possuir letras e números
+        </p>
+        <p
+          className={ havSpecial ? validPassword : invalidPassword }
+        >
+          Possuir algum caractere especial
+        </p>
+      </div>
       <button
         disabled={ !isFormValid }
       >
