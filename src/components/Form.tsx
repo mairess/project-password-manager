@@ -1,4 +1,8 @@
-function Form() {
+type FormProps = {
+  onCancel: () => void;
+};
+
+function Form({ onCancel }: FormProps) {
   return (
     <fieldset>
       <legend />
@@ -23,7 +27,7 @@ function Form() {
       </label>
 
       <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ onCancel }>Cancelar</button>
     </fieldset>
   );
 }
