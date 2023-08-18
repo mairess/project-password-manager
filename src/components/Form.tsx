@@ -9,14 +9,20 @@ function Form({ onCancel }: FormProps) {
   const [loginInput, setLoginInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
-  const regexSpecialChar = /[^a-zA-Z ]/g;
-  const haveSpecialChar = regexSpecialChar.test(passwordInput);
+  const specialCharRegex = /\W/;
+  const numberReg = /\d/;
+  const LettReg = /[a-zA-z]/;
+  const havSpecial = specialCharRegex.test(passwordInput);
+  const havNum = numberReg.test(passwordInput);
+  const havLett = LettReg.test(passwordInput);
 
   const isFormValid = serviceNameInput.length > 0
     && loginInput.length > 0
     && passwordInput.length >= 8
     && urlInput.length > 0
-    && !haveSpecialChar;
+    && havSpecial
+    && havNum
+    && havLett;
 
   return (
     <fieldset>
