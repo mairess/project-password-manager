@@ -11,7 +11,7 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
   const [loginInput, setLoginInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
-  // const [passwordBox, setPasswordBox] = useState<PasswordType[]>([]);
+  const [showPasswordBtn, setShowPasswordBtn] = useState(false);
 
   const specialCharRegex = /\W/;
   const numberReg = /\d/;
@@ -48,9 +48,15 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
     onCancel();
   };
 
+  function handleShowPasswordBtn() {
+    setShowPasswordBtn(!showPasswordBtn);
+  }
+
   return (
 
     <fieldset>
+
+      <legend>Cadastre aqui</legend>
 
       <label htmlFor="service-name-input">
         Nome do serviço
@@ -77,7 +83,7 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
       <label htmlFor="passwprd-input">
         Senha
         <input
-          type="password"
+          type={ showPasswordBtn ? 'text' : 'password' }
           name=""
           value={ passwordInput }
           id="passwprd-input"
@@ -126,6 +132,10 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
       <button disabled={ !isFormValid } onClick={ handleAddPassword }>Cadastrar</button>
 
       <button onClick={ onCancel }>Cancelar</button>
+
+      <button data-testid="show-hide-form-password" onClick={ handleShowPasswordBtn }>
+        ver senha
+      </button>
 
     </fieldset>
 
