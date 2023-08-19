@@ -52,8 +52,6 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
 
     <fieldset>
 
-      <legend>Registre aqui</legend>
-
       <label htmlFor="service-name-input">
         Nome do serviço
         <input

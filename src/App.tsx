@@ -23,6 +23,21 @@ function App() {
     setPasswordBox([...passwordBox, newPassword]);
   }
 
+  function handleRemovePassword(
+    passwordToRemove: string,
+    loginToRemove: string,
+    serviceNameToRemove: string,
+    urlToRemove: string,
+  ) {
+    const upDatedPasswords = passwordBox.filter((password) => !(
+      password.password === passwordToRemove
+        && password.login === loginToRemove
+        && password.serviceName === serviceNameToRemove
+        && password.url === urlToRemove
+    ));
+    setPasswordBox(upDatedPasswords);
+  }
+
   return (
     <div>
       <Title />
@@ -33,7 +48,8 @@ function App() {
         onPasswordAdd={ (newPassword) => handleAddPassword(newPassword) }
       /> }
 
-      <div id="password-box">
+      <fieldset id="password-box">
+        <legend>Senha cadastradas</legend>
 
         {passwordBox.length > 0 ? (
           passwordBox.map((password) => (
@@ -41,14 +57,26 @@ function App() {
               <a href={ password.url } target="_blank" rel="noopener noreferrer">
                 {password.serviceName}
               </a>
-              <p>{ `Login: ${password.login}` }</p>
-              <p>{ `Senha: ${password.password}` }</p>
+              <p>{password.login}</p>
+              <p>{password.password}</p>
+
+              <button
+                data-testid="remove-btn"
+                onClick={ () => handleRemovePassword(
+                  password.password,
+                  password.login,
+                  password.serviceName,
+                  password.url,
+                ) }
+              >
+                remover
+              </button>
             </div>
           ))
         ) : (
           <p>Nenhuma senha cadastrada</p>
         )}
-      </div>
+      </fieldset>
 
     </div>
   );
