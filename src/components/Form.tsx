@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import { PasswordType } from '../types';
 
 type FormProps = {
@@ -31,6 +32,16 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
     && havNum
     && havLett;
 
+  function handleAlert() {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Serviço cadastrado com sucesso',
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
+
   const handleAddPassword = () => {
     const newPassword: PasswordType = {
       serviceName: serviceNameInput,
@@ -46,6 +57,7 @@ function Form({ onCancel, onPasswordAdd }: FormProps) {
     setPasswordInput('');
     setUrlInput('');
     onCancel();
+    handleAlert();
   };
 
   function handleShowPasswordBtn() {
