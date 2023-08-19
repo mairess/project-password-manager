@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { PasswordType } from '../types';
 
 type FormProps = {
   onCancel: () => void;
+  onPasswordAdd: (newPassword: PasswordType) => void;
 };
 
-function Form({ onCancel }: FormProps) {
+function Form({ onCancel, onPasswordAdd }: FormProps) {
   const [serviceNameInput, setServiceNameInput] = useState('');
   const [loginInput, setLoginInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
+  // const [passwordBox, setPasswordBox] = useState<PasswordType[]>([]);
+
   const specialCharRegex = /\W/;
   const numberReg = /\d/;
   const LettReg = /[a-zA-z]/;
@@ -27,9 +31,29 @@ function Form({ onCancel }: FormProps) {
     && havNum
     && havLett;
 
+  const handleAddPassword = () => {
+    const newPassword: PasswordType = {
+      serviceName: serviceNameInput,
+      login: loginInput,
+      password: passwordInput,
+      url: urlInput,
+    };
+
+    onPasswordAdd(newPassword);
+
+    setServiceNameInput('');
+    setLoginInput('');
+    setPasswordInput('');
+    setUrlInput('');
+    onCancel();
+  };
+
   return (
+
     <fieldset>
-      <legend />
+
+      <legend>Registre aqui</legend>
+
       <label htmlFor="service-name-input">
         Nome do serviço
         <input
@@ -74,7 +98,8 @@ function Form({ onCancel }: FormProps) {
           id="url-input"
         />
       </label>
-      <div>
+
+      <div id="password-validation-error-message">
         <p
           className={ passwordInput.length >= 8 ? validPassword : invalidPassword }
         >
@@ -99,13 +124,13 @@ function Form({ onCancel }: FormProps) {
           Possuir algum caractere especial
         </p>
       </div>
-      <button
-        disabled={ !isFormValid }
-      >
-        Cadastrar
-      </button>
+
+      <button disabled={ !isFormValid } onClick={ handleAddPassword }>Cadastrar</button>
+
       <button onClick={ onCancel }>Cancelar</button>
+
     </fieldset>
+
   );
 }
 
