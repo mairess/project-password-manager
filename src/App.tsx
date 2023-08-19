@@ -8,6 +8,7 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [showRegisterBt, setShowRegisterBt] = useState(true);
   const [passwordBox, setPasswordBox] = useState<PasswordType[]>([]);
+  const [hidePasswords, SetHidePasswords] = useState(false);
 
   function handleShowForm() {
     setShowForm(true);
@@ -21,6 +22,7 @@ function App() {
 
   function handleAddPassword(newPassword: PasswordType) {
     setPasswordBox([...passwordBox, newPassword]);
+    console.log(newPassword.password); // ver a senha
   }
 
   function handleRemovePassword(
@@ -49,7 +51,16 @@ function App() {
       /> }
 
       <fieldset id="password-box">
+
         <legend>Senha cadastradas</legend>
+
+        <input
+          type="checkbox"
+          id="showPasswordToggle"
+          onChange={ () => SetHidePasswords(!hidePasswords) }
+
+        />
+        <label htmlFor="showPasswordToggle">Esconder senhas</label>
 
         {passwordBox.length > 0 ? (
           passwordBox.map((password) => (
@@ -58,7 +69,7 @@ function App() {
                 {password.serviceName}
               </a>
               <p>{password.login}</p>
-              <p>{password.password}</p>
+              <p>{hidePasswords ? '******' : password.password}</p>
 
               <button
                 data-testid="remove-btn"
@@ -71,6 +82,7 @@ function App() {
               >
                 remover
               </button>
+
             </div>
           ))
         ) : (
