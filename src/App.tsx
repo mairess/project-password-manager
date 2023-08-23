@@ -11,18 +11,17 @@ function App() {
   const [hidePasswords, SetHidePasswords] = useState(false);
 
   function handleShowForm() {
-    setShowForm(true);
-    setShowRegisterBt(false);
+    setShowForm(!showForm);
+    setShowRegisterBt(!showRegisterBt);
   }
 
   function handleCancel() {
-    setShowForm(false);
-    setShowRegisterBt(true);
+    setShowForm(!showForm);
+    setShowRegisterBt(!showRegisterBt);
   }
 
   function handleAddPassword(newPassword: PasswordType) {
     setPasswordBox([...passwordBox, newPassword]);
-    console.log(newPassword.password); // ver a senha
   }
 
   function handleRemovePassword(
