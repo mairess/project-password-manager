@@ -1,10 +1,11 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# <p align="center">Projeto Password Manager</p>
+
+## Contexto
+
+O objetivo desse projeto foi desenvolver uma aplicação em `react` com `typescript` para gerenciar senhas. Adicionando funcionalidades como adicionar ou remover um serviço usado na internet e esconder ou mostrar as senhas.
+
+## Competências desenvolvidas
+
+- Capacidade de ler o estado e atualizar o estado de um componente.
+- Capacidade de usar `props` para transmitir informações entre componentes.
+- Capacidade de usar callbacks para transmitir informações de componentes-filhos para componentes-pais.
