@@ -12,19 +12,19 @@ O objetivo desse projeto foi desenvolver uma aplicação em `react` com `typescr
 
 Clone o repositório:
 
-```JSON
+```SHELL
 git clone git@github.com:mairess/project-password-manager.git
 ```
 
 Instale as dependências:
 
-```JSON
+```SHELL
 npm install
 ```
 
 Inicie o vite server:
 
-```JSON
+```SHELL
 npm run dev
 ```
 
@@ -38,13 +38,13 @@ npm run dev
 
 Clone o repositório:
 
-```JSON
+```SHELL
 git clone git@github.com:mairess/project-password-manager.git
 ```
 
 Suba o container:
 
-```JSON
+```SHELL
 docker compose up -d
 ```
 
